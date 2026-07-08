@@ -80,15 +80,15 @@
 
   const contactForm = document.querySelector("#contactForm");
   const successPanel = document.querySelector("#successPanel");
-  const contactSummary = document.querySelector("#contactSummary");
+  const submitTitle = document.querySelector("#submitTitle");
   const formAlert = document.querySelector("#formAlert");
   const submitStatus = document.querySelector("#submitStatus");
-  const submitWarning = document.querySelector("#submitWarning");
-  const copySummaryBtn = document.querySelector("#copySummaryBtn");
+  const submitNote = document.querySelector("#submitNote");
+  const submitMeta = document.querySelector("#submitMeta");
+  const contactDetailsList = document.querySelector("#contactDetailsList");
   const copyWechatBtn = document.querySelector("#copyWechatBtn");
   const contactSubmit = document.querySelector("#contactSubmit");
   const serviceWechat = document.querySelector("#serviceWechat");
-  let latestSummaryText = "";
 
   if (serviceWechat) {
     serviceWechat.textContent = SERVICE_WECHAT_ID;
@@ -108,22 +108,13 @@
 
       try {
         const submitResult = await submitContactForm(formPayload);
-        latestSummaryText = buildContactSummary(formPayload);
-        renderContactSummary(latestSummaryText, submitResult.ok);
+        renderContactResult(formPayload, submitResult.ok);
+        showToast(submitResult.ok ? "咨询信息已接收，我们会尽快联系你" : "在线提交暂时失败，请添加客服微信联系");
 
         localStorage.setItem("yunmengLatestContact", JSON.stringify(formPayload));
         localStorage.setItem("yunmengSelectedPackage", formPayload.package);
       } finally {
         setSubmitState(false);
-      }
-    });
-  }
-
-  if (copySummaryBtn) {
-    copySummaryBtn.addEventListener("click", () => {
-      const summaryText = contactSummary ? contactSummary.textContent.trim() : latestSummaryText;
-      if (summaryText) {
-        copyText(summaryText, copySummaryBtn, "已复制");
       }
     });
   }
@@ -181,7 +172,7 @@
     }
 
     if (!isValid) {
-      showFormAlert("请先完善标红的咨询信息，再生成咨询摘要。");
+      showFormAlert("请先完善标红的咨询信息，再提交咨询。");
     }
 
     return isValid;
@@ -229,37 +220,57 @@
     formAlert.hidden = true;
   }
 
-  function buildContactSummary(data) {
-    return [
-      "【AI婚纱照咨询】",
-      `称呼：${data.name}`,
-      `微信号：${data.wechat || "未填写"}`,
-      `手机号：${data.phone || "未填写"}`,
-      `选择套餐：${data.package}`,
-      `想要风格：${data.style}`,
-      `使用用途：${data.usage.length ? data.usage.join("、") : "未填写"}`,
-      `是否加急：${data.urgent}`,
-      `备注需求：${data.message || "未填写"}`,
-      `提交时间：${data.submittedAtText}`
-    ].join("\n");
-  }
-
-  function renderContactSummary(summaryText, isOnlineSubmitSuccessful) {
-    if (!successPanel || !contactSummary) {
+  function renderContactResult(data, isOnlineSubmitSuccessful) {
+    if (!successPanel) {
       return;
     }
 
-    contactSummary.textContent = summaryText;
+    if (submitTitle) {
+      submitTitle.textContent = isOnlineSubmitSuccessful ? "咨询信息已接收" : "提交暂时失败";
+    }
     if (submitStatus) {
       submitStatus.textContent = isOnlineSubmitSuccessful
-        ? "咨询信息已提交成功。请复制下方内容，并添加客服微信发送照片和参考风格图。"
-        : "咨询摘要已生成，但在线提交暂时失败。请复制下方内容后添加客服微信发送。";
+        ? "你的 AI 婚纱照定制需求已成功提交，系统已同步发送到客服邮箱。我们会尽快通过你填写的微信号或手机号与你联系。"
+        : "在线提交暂时失败。请复制客服微信，添加后直接发送你的婚纱照需求，我们会尽快为你对接。";
     }
-    if (submitWarning) {
-      submitWarning.hidden = isOnlineSubmitSuccessful;
+    if (submitNote) {
+      submitNote.textContent = isOnlineSubmitSuccessful
+        ? "为了更快确认制作方案，你也可以主动添加客服微信，发送人物照片和参考风格图。"
+        : "你填写的信息已保存在当前页面，可展开查看后按需发给客服。";
     }
+    if (submitMeta) {
+      submitMeta.textContent = `提交时间：${data.submittedAtText}`;
+    }
+    renderContactDetails(data);
     successPanel.hidden = false;
     successPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function renderContactDetails(data) {
+    if (!contactDetailsList) {
+      return;
+    }
+
+    const detailItems = [
+      ["称呼", data.name],
+      ["微信号", data.wechat || "未填写"],
+      ["手机号", data.phone || "未填写"],
+      ["选择套餐", data.package],
+      ["想要风格", data.style],
+      ["使用用途", data.usage.length ? data.usage.join("、") : "未填写"],
+      ["是否加急", data.urgent],
+      ["备注需求", data.message || "未填写"],
+      ["提交时间", data.submittedAtText]
+    ];
+
+    contactDetailsList.innerHTML = "";
+    detailItems.forEach(([label, value]) => {
+      const term = document.createElement("dt");
+      const description = document.createElement("dd");
+      term.textContent = label;
+      description.textContent = value;
+      contactDetailsList.append(term, description);
+    });
   }
 
   function formatSubmittedAt(date) {
@@ -276,7 +287,7 @@
     }
 
     contactSubmit.disabled = isLoading;
-    contactSubmit.textContent = isLoading ? "提交中..." : "生成咨询摘要";
+    contactSubmit.textContent = isLoading ? "提交中..." : "提交咨询信息";
   }
 
   async function copyText(text, button, copiedText) {
@@ -313,11 +324,13 @@
       }
 
       button.textContent = copiedText;
+      showToast(copiedText === "已复制微信号" ? "客服微信号已复制" : copiedText);
       window.setTimeout(() => {
         button.textContent = originalText;
-      }, 1600);
+      }, 1800);
     } catch (error) {
-      button.textContent = "复制失败，请手动复制";
+      button.textContent = "复制失败，请手动复制微信号";
+      showToast("复制失败，请手动复制微信号");
       window.setTimeout(() => {
         button.textContent = originalText;
       }, 1800);
@@ -357,4 +370,21 @@
   }
 
   window.submitContactForm = submitContactForm;
+
+  function showToast(message) {
+    let toast = document.querySelector(".site-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "site-toast";
+      toast.setAttribute("role", "status");
+      document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.classList.add("show");
+    window.clearTimeout(showToast.timer);
+    showToast.timer = window.setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2400);
+  }
 })();
