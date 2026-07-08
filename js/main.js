@@ -120,15 +120,17 @@
 
   if (copySummaryBtn) {
     copySummaryBtn.addEventListener("click", () => {
-      if (latestSummaryText) {
-        copyText(latestSummaryText, copySummaryBtn, "已复制");
+      const summaryText = contactSummary ? contactSummary.textContent.trim() : latestSummaryText;
+      if (summaryText) {
+        copyText(summaryText, copySummaryBtn, "已复制");
       }
     });
   }
 
   if (copyWechatBtn) {
     copyWechatBtn.addEventListener("click", () => {
-      copyText(SERVICE_WECHAT_ID, copyWechatBtn, "已复制微信号");
+      const wechatText = serviceWechat ? serviceWechat.textContent.trim() : SERVICE_WECHAT_ID;
+      copyText(wechatText, copyWechatBtn, "已复制微信号");
     });
   }
 
