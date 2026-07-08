@@ -6,7 +6,7 @@
   <meta name="description" content="联系云梦AI婚纱照，填写 AI 婚纱照定制咨询表。">
   <title>联系我们｜云梦AI婚纱照</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=20260708-fonts">
+  <link rel="stylesheet" href="css/style.css?v=20260708-contact1">
 </head>
 <body>
   <header class="site-header">
@@ -34,61 +34,75 @@
 
     <section class="section">
       <div class="container contact-layout">
-        <form class="order-form" id="orderForm" novalidate>
+        <form class="order-form" id="contactForm" novalidate>
+          <div class="form-alert" id="formAlert" role="status" hidden></div>
           <div class="form-grid">
             <label>
-              <span>昵称 *</span>
-              <input type="text" name="nickname" placeholder="例如：云朵" required>
+              <span>称呼 *</span>
+              <input type="text" name="name" placeholder="例如：张女士 / 李先生" required>
               <small class="error-message"></small>
             </label>
             <label>
-              <span>微信号 / 联系方式 *</span>
-              <input type="text" name="contact" placeholder="微信号、手机号或其他联系方式" required>
+              <span>微信号</span>
+              <input type="text" name="wechat" placeholder="请输入微信号">
               <small class="error-message"></small>
             </label>
             <label>
-              <span>定制类型</span>
-              <select name="type">
-                <option value="单人">单人</option>
-                <option value="双人">双人</option>
-                <option value="情侣">情侣</option>
-                <option value="领证照">领证照</option>
-              </select>
+              <span>手机号</span>
+              <input type="tel" name="phone" placeholder="请输入手机号">
+              <small class="error-message"></small>
             </label>
             <label>
-              <span>意向套餐</span>
-              <select name="package" id="packageSelect">
-                <option value="体验试拍版">体验试拍版 ¥29.9</option>
-                <option value="效果确认版">效果确认版 ¥199</option>
-                <option value="婚礼实用版">婚礼实用版 ¥599（主推）</option>
-                <option value="婚礼全流程版">婚礼全流程版 ¥999</option>
+              <span>选择套餐 *</span>
+              <select name="package" id="packageSelect" required>
+                <option value="">请选择套餐</option>
+                <option value="29.9元体验试拍版">29.9元体验试拍版</option>
+                <option value="199元效果确认版">199元效果确认版</option>
+                <option value="599元婚礼实用版">599元婚礼实用版</option>
+                <option value="999元全流程定制版">999元全流程定制版</option>
+                <option value="还不确定，想先咨询">还不确定，想先咨询</option>
               </select>
+              <small class="error-message"></small>
             </label>
             <label>
-              <span>喜欢的风格</span>
-              <select name="style">
-                <option value="韩系棚拍">韩系棚拍</option>
-                <option value="极简白纱">极简白纱</option>
+              <span>想要风格 *</span>
+              <select name="style" required>
+                <option value="">请选择风格</option>
+                <option value="韩系极简棚拍">韩系极简棚拍</option>
                 <option value="森系外景">森系外景</option>
-                <option value="复古电影感">复古电影感</option>
-                <option value="领证跟拍">领证跟拍</option>
-                <option value="还不确定，希望推荐">还不确定，希望推荐</option>
+                <option value="黑色电影感">黑色电影感</option>
+                <option value="复古港风">复古港风</option>
+                <option value="中式 / 新中式">中式 / 新中式</option>
+                <option value="领证官宣风">领证官宣风</option>
+                <option value="还不确定，需要推荐">还不确定，需要推荐</option>
               </select>
-            </label>
-            <label>
-              <span>是否加急</span>
-              <select name="urgent">
-                <option value="不加急">不加急</option>
-                <option value="希望加急">希望加急</option>
-                <option value="先咨询时间">先咨询时间</option>
-              </select>
+              <small class="error-message"></small>
             </label>
           </div>
+          <fieldset class="option-field">
+            <legend>使用用途</legend>
+            <div class="option-grid">
+              <label class="choice-item"><input type="checkbox" name="usage" value="领证官宣"><span>领证官宣</span></label>
+              <label class="choice-item"><input type="checkbox" name="usage" value="朋友圈 / 小红书发布"><span>朋友圈 / 小红书发布</span></label>
+              <label class="choice-item"><input type="checkbox" name="usage" value="电子请柬"><span>电子请柬</span></label>
+              <label class="choice-item"><input type="checkbox" name="usage" value="婚礼迎宾屏"><span>婚礼迎宾屏</span></label>
+              <label class="choice-item"><input type="checkbox" name="usage" value="婚礼相册 / 海报"><span>婚礼相册 / 海报</span></label>
+              <label class="choice-item"><input type="checkbox" name="usage" value="其他"><span>其他</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="option-field">
+            <legend>是否加急</legend>
+            <div class="option-grid urgent-grid">
+              <label class="choice-item"><input type="radio" name="urgent" value="不加急，正常制作" checked><span>不加急，正常制作</span></label>
+              <label class="choice-item"><input type="radio" name="urgent" value="加急，24-48小时出初稿"><span>加急，24-48小时出初稿</span></label>
+              <label class="choice-item"><input type="radio" name="urgent" value="需要先沟通时间"><span>需要先沟通时间</span></label>
+            </div>
+          </fieldset>
           <label class="textarea-label">
             <span>备注需求</span>
-            <textarea name="message" rows="6" placeholder="可以写：想要的风格、用途、是否有参考图、希望几天内交付、对脸像不像的要求等。"></textarea>
+            <textarea name="message" rows="6" placeholder="例如：想要白色棚拍、韩系风、双人合照、希望更像本人等"></textarea>
           </label>
-          <button class="btn btn-primary form-submit" type="submit">提交咨询意向</button>
+          <button class="btn btn-primary form-submit" type="submit" id="contactSubmit">生成咨询摘要</button>
         </form>
 
         <aside class="contact-card">
@@ -105,10 +119,25 @@
       </div>
 
       <div class="container">
-        <div class="success-panel" id="successPanel" hidden>
-          <h2>提交成功</h2>
-          <p>你的咨询意向已保存在当前浏览器。下面是本次提交摘要：</p>
-          <dl id="orderSummary"></dl>
+        <div class="success-panel contact-result" id="successPanel" hidden>
+          <div class="summary-card">
+            <h2>咨询信息已生成</h2>
+            <p>请复制下方内容，并添加客服微信发送。我们会根据你的照片、风格需求和套餐选择，评估适合你的AI婚纱照制作方案。</p>
+            <p class="submit-warning" id="submitWarning" hidden>咨询摘要已生成，但在线提交暂时失败，请复制内容后添加微信发送。</p>
+            <pre class="summary-text" id="contactSummary"></pre>
+            <div class="copy-actions">
+              <button class="btn btn-primary" type="button" id="copySummaryBtn">复制咨询内容</button>
+              <button class="btn btn-ghost" type="button" id="copyWechatBtn">复制客服微信</button>
+            </div>
+          </div>
+          <div class="wechat-card">
+            <div>
+              <h2>添加客服微信</h2>
+              <p class="wechat-id">客服微信：<strong id="serviceWechat">YOUR_WECHAT_ID</strong></p>
+              <p>复制微信号后，请添加客服微信，并发送上方咨询内容。后续请根据客服提示发送人物照片和参考风格图。</p>
+            </div>
+            <div class="qr-placeholder">微信二维码占位图</div>
+          </div>
         </div>
       </div>
     </section>
