@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs><linearGradient id="g" x1="1" x2="0" y1="0" y2="1"><stop stop-color="#5C222A"/><stop offset="0.48" stop-color="#D7B56A"/><stop offset="1" stop-color="#FBF6EE"/></linearGradient></defs>
+  <rect width="800" height="1000" fill="url(#g)"/><path d="M150 170h500v660H150z" fill="#FBF6EE" opacity=".22"/><path d="M170 790c95-150 360-150 460 0v210H170z" fill="#fff" opacity=".34"/><text x="64" y="96" fill="#FBF6EE" font-family="Georgia,serif" font-size="42" font-weight="700">FILM 02</text>
+</svg>

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs><linearGradient id="g" x1="0" x2="1" y1="1" y2="0"><stop stop-color="#6F8F78"/><stop offset="0.48" stop-color="#FBF6EE"/><stop offset="1" stop-color="#F7DEE3"/></linearGradient></defs>
+  <rect width="800" height="1000" fill="url(#g)"/><path d="M88 450c112-74 206-92 312-54s202 22 312-36v640H88z" fill="#fff" opacity=".33"/><circle cx="416" cy="300" r="118" fill="#fff" opacity=".45"/><text x="64" y="96" fill="#A72030" font-family="Georgia,serif" font-size="42" font-weight="700">FOREST 03</text>
+</svg>

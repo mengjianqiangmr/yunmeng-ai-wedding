@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="联系云梦AI婚纱照，填写 AI 婚纱照定制咨询表。">
+  <title>联系我们｜云梦AI婚纱照</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20260708">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="主导航">
+      <a class="brand" href="index.html"><span class="seal">囍</span><span>云梦AI婚纱照</span></a>
+      <button class="nav-toggle" type="button" aria-label="展开导航" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="portfolio.html">作品集</a>
+        <a href="services.html">服务报价</a>
+        <a href="process.html">制作流程</a>
+        <a class="active" href="contact.html">联系我们</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow"><span class="mini-seal">囍</span> Contact</span>
+        <h1>先填写意向，我来帮你判断适合哪种定制方案</h1>
+        <p>提交后页面会保存你的咨询摘要，方便你后续复制到微信、小红书或抖音私信里继续沟通。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-layout">
+        <form class="order-form" id="orderForm" novalidate>
+          <div class="form-grid">
+            <label>
+              <span>昵称 *</span>
+              <input type="text" name="nickname" placeholder="例如：云朵" required>
+              <small class="error-message"></small>
+            </label>
+            <label>
+              <span>微信号 / 联系方式 *</span>
+              <input type="text" name="contact" placeholder="微信号、手机号或其他联系方式" required>
+              <small class="error-message"></small>
+            </label>
+            <label>
+              <span>定制类型</span>
+              <select name="type">
+                <option value="单人">单人</option>
+                <option value="双人">双人</option>
+                <option value="情侣">情侣</option>
+                <option value="领证照">领证照</option>
+              </select>
+            </label>
+            <label>
+              <span>意向套餐</span>
+              <select name="package" id="packageSelect">
+                <option value="体验试拍版">体验试拍版 ¥29.9</option>
+                <option value="效果确认版">效果确认版 ¥199</option>
+                <option value="婚礼实用版">婚礼实用版 ¥599（主推）</option>
+                <option value="婚礼全流程版">婚礼全流程版 ¥999</option>
+              </select>
+            </label>
+            <label>
+              <span>喜欢的风格</span>
+              <select name="style">
+                <option value="韩系棚拍">韩系棚拍</option>
+                <option value="极简白纱">极简白纱</option>
+                <option value="森系外景">森系外景</option>
+                <option value="复古电影感">复古电影感</option>
+                <option value="领证跟拍">领证跟拍</option>
+                <option value="还不确定，希望推荐">还不确定，希望推荐</option>
+              </select>
+            </label>
+            <label>
+              <span>是否加急</span>
+              <select name="urgent">
+                <option value="不加急">不加急</option>
+                <option value="希望加急">希望加急</option>
+                <option value="先咨询时间">先咨询时间</option>
+              </select>
+            </label>
+          </div>
+          <label class="textarea-label">
+            <span>备注需求</span>
+            <textarea name="message" rows="6" placeholder="可以写：想要的风格、用途、是否有参考图、希望几天内交付、对脸像不像的要求等。"></textarea>
+          </label>
+          <button class="btn btn-primary form-submit" type="submit">提交咨询意向</button>
+        </form>
+
+        <aside class="contact-card">
+          <span class="seal large-seal">囍</span>
+          <h2>咨询前可以先准备</h2>
+          <ul class="check-list">
+            <li>2-5 张清晰人物照</li>
+            <li>喜欢的风格参考图</li>
+            <li>想要发布的平台或用途</li>
+            <li>预算和期望交付时间</li>
+          </ul>
+          <p>提交后会生成一份咨询摘要，方便你复制到微信、小红书或抖音私信继续沟通；正式制作前会再次确认套餐、照片要求和交付时间。</p>
+        </aside>
+      </div>
+
+      <div class="container">
+        <div class="success-panel" id="successPanel" hidden>
+          <h2>提交成功</h2>
+          <p>你的咨询意向已保存在当前浏览器。下面是本次提交摘要：</p>
+          <dl id="orderSummary"></dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <a class="brand" href="index.html"><span class="seal">囍</span><span>云梦AI婚纱照</span></a>
+      <p>专注 AI 婚纱照、情侣写真、领证照定制。© 2026 云梦AI婚纱照 All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

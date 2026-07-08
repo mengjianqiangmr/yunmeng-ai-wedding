@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Yunmeng AI Wedding Hero Placeholder</title>
+  <desc id="desc">Warm wedding-style placeholder image for the homepage hero.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#FBF6EE"/>
+      <stop offset="0.42" stop-color="#F7DEE3"/>
+      <stop offset="1" stop-color="#C6A15B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="72%" cy="34%" r="54%">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.92"/>
+      <stop offset="0.48" stop-color="#FFFFFF" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#bg)"/>
+  <rect width="1600" height="1100" fill="url(#glow)"/>
+  <circle cx="1120" cy="430" r="210" fill="#FBF6EE" opacity="0.74"/>
+  <circle cx="1276" cy="452" r="180" fill="#FFF8F2" opacity="0.62"/>
+  <path d="M1048 656c42-148 167-220 250-192 80 27 126 154 70 294-38 94-123 165-229 198-89-50-122-176-91-300z" fill="#fff" opacity="0.72"/>
+  <path d="M1184 330c-62 22-95 79-77 137 24 77 130 93 188 40 61-55 38-180-111-177z" fill="#F7DEE3" opacity="0.82"/>
+  <path d="M1288 354c-35 20-50 61-35 102 20 53 93 62 133 24 43-41 22-128-98-126z" fill="#FBF6EE" opacity="0.9"/>
+  <path d="M930 842c146-110 351-116 522 6v252H930z" fill="#A72030" opacity="0.12"/>
+  <path d="M1020 808c108-70 264-72 396 6v286h-396z" fill="#FFFFFF" opacity="0.58"/>
+  <text x="1018" y="910" fill="#A72030" font-family="Georgia, serif" font-size="58" font-weight="700" opacity="0.9">YUNMENG</text>
+  <text x="1021" y="968" fill="#312522" font-family="Arial, sans-serif" font-size="26" letter-spacing="6" opacity="0.62">AI WEDDING</text>
+</svg>

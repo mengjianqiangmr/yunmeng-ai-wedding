@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs><linearGradient id="g" x1="1" x2="0" y1="0" y2="1"><stop stop-color="#F7DEE3"/><stop offset="0.52" stop-color="#FFF8F4"/><stop offset="1" stop-color="#DABF8D"/></linearGradient></defs>
+  <rect width="800" height="1000" fill="url(#g)"/><circle cx="240" cy="240" r="130" fill="#fff" opacity=".5"/><circle cx="560" cy="330" r="210" fill="#fff" opacity=".32"/><path d="M112 840c120-95 390-115 576 0v160H112z" fill="#A72030" opacity=".1"/><text x="64" y="96" fill="#A72030" font-family="Georgia,serif" font-size="42" font-weight="700">KOREAN 02</text>
+</svg>

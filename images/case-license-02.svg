@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs><linearGradient id="g" x1="1" x2="0" y1="0" y2="1"><stop stop-color="#A72030"/><stop offset="0.44" stop-color="#F7DEE3"/><stop offset="1" stop-color="#FBF6EE"/></linearGradient></defs>
+  <rect width="800" height="1000" fill="url(#g)"/><circle cx="310" cy="390" r="90" fill="#fff" opacity=".72"/><circle cx="490" cy="390" r="90" fill="#fff" opacity=".72"/><path d="M170 740c78-150 382-150 460 0v260H170z" fill="#fff" opacity=".52"/><text x="64" y="96" fill="#FBF6EE" font-family="Georgia,serif" font-size="42" font-weight="700">LICENSE 02</text>
+</svg>
