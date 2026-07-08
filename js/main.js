@@ -1,5 +1,5 @@
 (function () {
-  const CONTACT_FORM_ENDPOINT = "";
+  const CONTACT_FORM_ENDPOINT = "https://formspree.io/f/xqevoron";
   const SERVICE_WECHAT_ID = "YOUR_WECHAT_ID";
 
   const navToggle = document.querySelector(".nav-toggle");
@@ -82,6 +82,7 @@
   const successPanel = document.querySelector("#successPanel");
   const contactSummary = document.querySelector("#contactSummary");
   const formAlert = document.querySelector("#formAlert");
+  const submitStatus = document.querySelector("#submitStatus");
   const submitWarning = document.querySelector("#submitWarning");
   const copySummaryBtn = document.querySelector("#copySummaryBtn");
   const copyWechatBtn = document.querySelector("#copyWechatBtn");
@@ -108,7 +109,7 @@
       try {
         const submitResult = await submitContactForm(formPayload);
         latestSummaryText = buildContactSummary(formPayload);
-        renderContactSummary(latestSummaryText, !submitResult.ok);
+        renderContactSummary(latestSummaryText, submitResult.ok);
 
         localStorage.setItem("yunmengLatestContact", JSON.stringify(formPayload));
         localStorage.setItem("yunmengSelectedPackage", formPayload.package);
@@ -243,14 +244,19 @@
     ].join("\n");
   }
 
-  function renderContactSummary(summaryText, shouldShowWarning) {
+  function renderContactSummary(summaryText, isOnlineSubmitSuccessful) {
     if (!successPanel || !contactSummary) {
       return;
     }
 
     contactSummary.textContent = summaryText;
+    if (submitStatus) {
+      submitStatus.textContent = isOnlineSubmitSuccessful
+        ? "咨询信息已提交成功。请复制下方内容，并添加客服微信发送照片和参考风格图。"
+        : "咨询摘要已生成，但在线提交暂时失败。请复制下方内容后添加客服微信发送。";
+    }
     if (submitWarning) {
-      submitWarning.hidden = !shouldShowWarning;
+      submitWarning.hidden = isOnlineSubmitSuccessful;
     }
     successPanel.hidden = false;
     successPanel.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -270,25 +276,40 @@
     }
 
     contactSubmit.disabled = isLoading;
-    contactSubmit.textContent = isLoading ? "生成中..." : "生成咨询摘要";
+    contactSubmit.textContent = isLoading ? "提交中..." : "生成咨询摘要";
   }
 
   async function copyText(text, button, copiedText) {
     const originalText = button.textContent;
 
     try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(text);
-      } else {
+      let isCopied = false;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(text);
+          isCopied = true;
+        } catch (error) {
+          isCopied = false;
+        }
+      }
+
+      if (!isCopied) {
         const textarea = document.createElement("textarea");
         textarea.value = text;
         textarea.setAttribute("readonly", "");
         textarea.style.position = "fixed";
         textarea.style.opacity = "0";
+        textarea.style.pointerEvents = "none";
         document.body.appendChild(textarea);
+        textarea.focus();
         textarea.select();
-        document.execCommand("copy");
+        isCopied = document.execCommand("copy");
         textarea.remove();
+      }
+
+      if (!isCopied) {
+        throw new Error("Copy failed");
       }
 
       button.textContent = copiedText;
@@ -312,7 +333,8 @@
       const response = await fetch(CONTACT_FORM_ENDPOINT, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify({
           name: formData.name,
@@ -320,10 +342,11 @@
           phone: formData.phone,
           package: formData.package,
           style: formData.style,
-          usage: formData.usage,
+          usage: formData.usage.join("、"),
           urgent: formData.urgent,
           message: formData.message,
-          submittedAt: formData.submittedAt
+          submittedAt: formData.submittedAt,
+          _subject: "新的AI婚纱照客户咨询"
         })
       });
 

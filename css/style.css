@@ -1113,6 +1113,11 @@ textarea[aria-invalid="true"] {
   color: var(--muted);
 }
 
+#submitStatus {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .submit-warning {
   padding: 12px 14px;
   border: 1px solid rgba(167, 32, 48, 0.16);
