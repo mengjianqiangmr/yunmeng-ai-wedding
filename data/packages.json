@@ -1,13 +1,14 @@
 {
   "packages": [
     {
-      "slug": "trial",
+      "contactPackage": "体验试拍版",
       "styleClass": "trial",
-      "name": "体验试拍版",
       "price": "¥29.9",
-      "photoCount": "1 张基础效果图",
-      "description": "适合还在犹豫要不要尝试 AI 婚纱照的新人，先用低成本看基础效果。",
+      "name": "体验试拍版",
+      "slug": "trial",
+      "order": 1,
       "recommended": false,
+      "description": "适合还在犹豫要不要尝试 AI 婚纱照的新人，先用低成本看基础效果。 是不是",
       "features": [
         "不含精修",
         "每人限购 1 次",
@@ -15,18 +16,18 @@
         "适合先确认大致感觉",
         "每套服装 2 次免费修改"
       ],
-      "contactPackage": "体验试拍版",
-      "buttonText": "选择体验试拍版",
-      "order": 1
+      "photoCount": "1 张基础效果图",
+      "buttonText": "选择体验试拍版"
     },
     {
-      "slug": "confirm",
+      "contactPackage": "效果确认版",
       "styleClass": "confirm",
-      "name": "效果确认版",
       "price": "¥199",
-      "photoCount": "1 套，3 张",
-      "description": "适合想先确认像不像自己、是否适合 AI 婚纱照，再决定是否升级。",
+      "name": "效果确认版",
+      "slug": "confirm",
+      "order": 2,
       "recommended": false,
+      "description": "适合想先确认像不像自己、是否适合 AI 婚纱照，再决定是否升级。",
       "features": [
         "用于效果验证",
         "不建议直接用于婚礼场景",
@@ -34,18 +35,18 @@
         "适合确认人物相似度",
         "每套服装 2 次免费修改"
       ],
-      "contactPackage": "效果确认版",
-      "buttonText": "选择效果确认版",
-      "order": 2
+      "photoCount": "1 套，3 张",
+      "buttonText": "选择效果确认版"
     },
     {
-      "slug": "practical",
+      "contactPackage": "婚礼实用版",
       "styleClass": "practical",
-      "name": "婚礼实用版",
       "price": "¥599",
-      "photoCount": "2 套，12 张",
-      "description": "适合需要一套可正式用于婚礼的婚纱影像，覆盖大多数婚礼物料需求。",
+      "name": "婚礼实用版",
+      "slug": "practical",
+      "order": 3,
       "recommended": true,
+      "description": "适合需要一套可正式用于婚礼的婚纱影像，覆盖大多数婚礼物料需求。",
       "features": [
         "可用于电子请柬",
         "可用于暖场屏幕",
@@ -54,18 +55,18 @@
         "已支付金额可抵扣升级",
         "每套服装 2 次免费修改"
       ],
-      "contactPackage": "婚礼实用版",
-      "buttonText": "选择婚礼实用版",
-      "order": 3
+      "photoCount": "2 套，12 张",
+      "buttonText": "选择婚礼实用版"
     },
     {
-      "slug": "full",
+      "contactPackage": "婚礼全流程版",
       "styleClass": "full",
-      "name": "婚礼全流程版",
       "price": "¥999",
-      "photoCount": "3 套，20 张",
-      "description": "适合想一次性把婚礼所有影像准备齐，不想反复补图和返工的新人。",
+      "name": "婚礼全流程版",
+      "slug": "full",
+      "order": 4,
       "recommended": false,
+      "description": "适合想一次性把婚礼所有影像准备齐，不想反复补图和返工的新人。",
       "features": [
         "覆盖请柬、暖场、迎宾",
         "覆盖相册等完整使用场景",
@@ -74,9 +75,8 @@
         "一步到位更划算",
         "每套服装 2 次免费修改"
       ],
-      "contactPackage": "婚礼全流程版",
-      "buttonText": "选择全流程版",
-      "order": 4
+      "photoCount": "3 套，20 张",
+      "buttonText": "选择全流程版"
     }
   ]
 }
