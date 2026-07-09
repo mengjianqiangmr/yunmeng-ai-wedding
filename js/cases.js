@@ -13,12 +13,13 @@
     loadCases()
       .then((cases) => {
         const sortedCases = sortByOrder(cases);
+        const categorySortedCases = sortByCategoryThenOrder(cases);
         if (featuredTarget) {
           renderFeaturedCases(featuredTarget, sortedCases);
         }
         if (portfolioTarget) {
-          renderPortfolioFilters(sortedCases);
-          renderPortfolioCases(portfolioTarget, sortedCases);
+          renderPortfolioFilters(categorySortedCases);
+          renderPortfolioCases(portfolioTarget, categorySortedCases);
           bindPortfolioFilters(portfolioTarget);
         }
       })
@@ -236,6 +237,33 @@
       const orderA = Number(a.order || 0);
       const orderB = Number(b.order || 0);
       return orderA - orderB;
+    });
+  }
+
+  function sortByCategoryThenOrder(items) {
+    const orderedCategories = getUniqueCategories(sortByOrder(items));
+    const categoryRank = orderedCategories.reduce((rank, category, index) => {
+      rank[category] = index;
+      return rank;
+    }, {});
+
+    return items.slice().sort((a, b) => {
+      const categoryA = String(a.category || "").trim();
+      const categoryB = String(b.category || "").trim();
+      const rankA = Object.prototype.hasOwnProperty.call(categoryRank, categoryA) ? categoryRank[categoryA] : 9999;
+      const rankB = Object.prototype.hasOwnProperty.call(categoryRank, categoryB) ? categoryRank[categoryB] : 9999;
+
+      if (rankA !== rankB) {
+        return rankA - rankB;
+      }
+
+      const orderA = Number(a.order || 0);
+      const orderB = Number(b.order || 0);
+      if (orderA !== orderB) {
+        return orderA - orderB;
+      }
+
+      return String(a.title || "").localeCompare(String(b.title || ""), "zh-Hans-CN");
     });
   }
 
