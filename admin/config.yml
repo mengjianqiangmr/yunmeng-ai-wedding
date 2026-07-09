@@ -31,10 +31,8 @@ collections:
         widget: image
       - label: 系列分类
         name: category
-        widget: select
-        options:
-          - 黑色蝴蝶主题
-          - 森系外景
+        widget: string
+        hint: 可填写任意主题名称，例如：黑色蝴蝶主题、森系外景、韩系极简棚拍、复古电影感。
       - label: 标题
         name: title
         widget: string

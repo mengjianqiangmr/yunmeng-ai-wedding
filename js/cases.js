@@ -4,10 +4,6 @@
   const BRANCH = "main";
   const CASES_JSON_URL = "data/cases.json";
   const PACKAGES_JSON_URL = "data/packages.json";
-  const CATEGORY_STYLE_MAP = {
-    "黑色蝴蝶主题": "black",
-    "森系外景": "forest"
-  };
 
   const featuredTarget = document.querySelector("[data-cases-target='featured']");
   const portfolioTarget = document.querySelector("[data-cases-target='portfolio']");
@@ -21,6 +17,7 @@
           renderFeaturedCases(featuredTarget, sortedCases);
         }
         if (portfolioTarget) {
+          renderPortfolioFilters(sortedCases);
           renderPortfolioCases(portfolioTarget, sortedCases);
           bindPortfolioFilters(portfolioTarget);
         }
@@ -115,7 +112,7 @@
     cases.forEach((item) => {
       const card = document.createElement("article");
       card.className = "case-card portfolio-item";
-      card.dataset.style = item.style || getCategoryStyle(item.category);
+      card.dataset.filter = getCategoryFilter(item.category);
       card.innerHTML = [
         `<img src="${escapeAttribute(normalizeAssetPath(item.image))}" alt="${escapeAttribute(item.alt || item.title)}" loading="lazy">`,
         "<div>",
@@ -126,6 +123,29 @@
       ].join("");
       target.appendChild(card);
     });
+  }
+
+  function renderPortfolioFilters(cases) {
+    const filterBar = document.querySelector(".filter-bar");
+    if (!filterBar) {
+      return;
+    }
+
+    filterBar.innerHTML = "";
+    filterBar.appendChild(createFilterButton("全部", "all", true));
+
+    getUniqueCategories(cases).forEach((category) => {
+      filterBar.appendChild(createFilterButton(category, getCategoryFilter(category), false));
+    });
+  }
+
+  function createFilterButton(label, filter, active) {
+    const button = document.createElement("button");
+    button.className = `filter-chip${active ? " active" : ""}`;
+    button.type = "button";
+    button.dataset.filter = filter;
+    button.textContent = label;
+    return button;
   }
 
   function renderPackages(target, packages) {
@@ -168,7 +188,7 @@
         button.classList.add("active");
 
         target.querySelectorAll(".portfolio-item").forEach((item) => {
-          const shouldShow = filter === "all" || item.dataset.style === filter;
+          const shouldShow = filter === "all" || item.dataset.filter === filter;
           item.classList.toggle("is-hidden", !shouldShow);
         });
       });
@@ -219,8 +239,24 @@
     });
   }
 
-  function getCategoryStyle(category) {
-    return CATEGORY_STYLE_MAP[category] || slugify(category);
+  function getUniqueCategories(cases) {
+    const seen = new Set();
+    return cases.reduce((categories, item) => {
+      const category = String(item.category || "").trim();
+      if (category && !seen.has(category)) {
+        seen.add(category);
+        categories.push(category);
+      }
+      return categories;
+    }, []);
+  }
+
+  function getCategoryFilter(category) {
+    const value = String(category || "").trim();
+    if (!value) {
+      return "category-other";
+    }
+    return `category-${hashString(value)}`;
   }
 
   function normalizeAssetPath(path) {
@@ -231,12 +267,14 @@
     return window.location.hostname.endsWith("github.io");
   }
 
-  function slugify(value) {
-    return String(value || "")
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "");
+  function hashString(value) {
+    let hash = 0;
+    const text = String(value || "");
+    for (let index = 0; index < text.length; index += 1) {
+      hash = ((hash << 5) - hash) + text.charCodeAt(index);
+      hash |= 0;
+    }
+    return Math.abs(hash).toString(36);
   }
 
   function escapeHtml(value) {
