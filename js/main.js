@@ -95,8 +95,16 @@
   }
 
   if (contactForm) {
+    if (successPanel) {
+      successPanel.hidden = true;
+    }
+
     contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      if (successPanel) {
+        successPanel.hidden = true;
+      }
 
       const formPayload = collectContactForm(contactForm);
       const isValid = validateContactForm(contactForm, formPayload);
@@ -108,8 +116,14 @@
 
       try {
         const submitResult = await submitContactForm(formPayload);
-        renderContactResult(formPayload, submitResult.ok);
-        showToast(submitResult.ok ? "咨询信息已接收，我们会尽快联系你" : "在线提交暂时失败，请添加客服微信联系");
+        if (!submitResult.ok) {
+          showFormAlert(`提交失败，请检查网络后重试，或直接添加客服微信：${SERVICE_WECHAT_ID}`);
+          showToast("在线提交暂时失败，请添加客服微信联系");
+          return;
+        }
+
+        renderContactResult(formPayload);
+        showToast("咨询信息已接收，我们会尽快联系你");
 
         localStorage.setItem("yunmengLatestContact", JSON.stringify(formPayload));
         localStorage.setItem("yunmengSelectedPackage", formPayload.package);
@@ -220,28 +234,25 @@
     formAlert.hidden = true;
   }
 
-  function renderContactResult(data, isOnlineSubmitSuccessful) {
+  function renderContactResult(data) {
     if (!successPanel) {
       return;
     }
 
     if (submitTitle) {
-      submitTitle.textContent = isOnlineSubmitSuccessful ? "咨询信息已接收" : "提交暂时失败";
+      submitTitle.textContent = "咨询信息已接收";
     }
     if (submitStatus) {
-      submitStatus.textContent = isOnlineSubmitSuccessful
-        ? "你的 AI 婚纱照定制需求已成功提交，系统已同步发送到客服邮箱。我们会尽快通过你填写的微信号或手机号与你联系。"
-        : "在线提交暂时失败。请复制客服微信，添加后直接发送你的婚纱照需求，我们会尽快为你对接。";
+      submitStatus.textContent = "你的 AI 婚纱照定制需求已成功提交，系统已同步发送到客服邮箱。我们会尽快通过你填写的微信号或手机号与你联系。";
     }
     if (submitNote) {
-      submitNote.textContent = isOnlineSubmitSuccessful
-        ? "为了更快确认制作方案，你也可以主动添加客服微信，发送人物照片和参考风格图。"
-        : "你填写的信息已保存在当前页面，可展开查看后按需发给客服。";
+      submitNote.textContent = "为了更快确认制作方案，你也可以主动添加客服微信，发送人物照片和参考风格图。";
     }
     if (submitMeta) {
       submitMeta.textContent = `提交时间：${data.submittedAtText}`;
     }
     renderContactDetails(data);
+    contactForm.hidden = true;
     successPanel.hidden = false;
     successPanel.scrollIntoView({ behavior: "smooth", block: "start" });
   }
