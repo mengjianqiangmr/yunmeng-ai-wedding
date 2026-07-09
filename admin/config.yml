@@ -3,9 +3,7 @@ backend:
   repo: mengjianqiangmr/yunmeng-ai-wedding
   branch: main
   # GitHub Pages 需要额外部署一个 OAuth 代理服务。
-  # 部署完成后，把下面的地址替换成你的代理域名，例如：
-  # base_url: https://your-decap-oauth-proxy.vercel.app
-  base_url: https://your-decap-oauth-proxy.example.com
+  base_url: https://yunmeng-decap-oauth.893447956m.workers.dev
   auth_endpoint: auth
 
 media_folder: images
