@@ -1,0 +1,110 @@
+[
+  {
+    "image": "images/black-butterfly-01.jpg",
+    "category": "黑色蝴蝶主题",
+    "title": "银白大裙摆与暗夜背景",
+    "alt": "黑色蝴蝶主题新娘背影婚纱照",
+    "description": "适合作为作品集首图，画面高级、记忆点强。",
+    "featured": true,
+    "order": 1
+  },
+  {
+    "image": "images/black-butterfly-02.jpg",
+    "category": "黑色蝴蝶主题",
+    "title": "双人全身棚拍仪式感",
+    "alt": "黑色蝴蝶主题双人全身婚纱照",
+    "description": "黑色背景衬托白纱和西装，适合做主推风格样片。",
+    "featured": false,
+    "order": 2
+  },
+  {
+    "image": "images/black-butterfly-03.jpg",
+    "category": "黑色蝴蝶主题",
+    "title": "新娘半身精致肖像",
+    "alt": "黑色蝴蝶主题新娘半身婚纱照",
+    "description": "强调妆发、皇冠和肩颈线条，适合头像与封面。",
+    "featured": false,
+    "order": 3
+  },
+  {
+    "image": "images/black-butterfly-04.jpg",
+    "category": "黑色蝴蝶主题",
+    "title": "亲吻互动与浪漫暗调",
+    "alt": "黑色蝴蝶主题双人亲吻婚纱照",
+    "description": "适合喜欢电影感、亲密感和强对比画面的情侣。",
+    "featured": true,
+    "order": 4
+  },
+  {
+    "image": "images/black-butterfly-05.jpg",
+    "category": "黑色蝴蝶主题",
+    "title": "坐姿合影与温柔对视",
+    "alt": "黑色蝴蝶主题双人坐姿婚纱照",
+    "description": "人物关系更亲近，适合补充九宫格中的双人近景。",
+    "featured": false,
+    "order": 5
+  },
+  {
+    "image": "images/black-butterfly-06.jpg",
+    "category": "黑色蝴蝶主题",
+    "title": "站姿合影与华丽裙摆",
+    "alt": "黑色蝴蝶主题双人站姿婚纱照",
+    "description": "保留经典婚纱照姿态，同时有更强的舞台感。",
+    "featured": false,
+    "order": 6
+  },
+  {
+    "image": "images/forest-wedding-01.jpg",
+    "category": "森系外景",
+    "title": "森林自然光双人肖像",
+    "alt": "森系外景双人近景婚纱照",
+    "description": "光线柔和、肤色干净，适合温柔自然的情侣照。",
+    "featured": false,
+    "order": 7
+  },
+  {
+    "image": "images/forest-wedding-02.jpg",
+    "category": "森系外景",
+    "title": "草地新娘全身照",
+    "alt": "森系外景新娘全身婚纱照",
+    "description": "适合展示婚纱线条和整体气质，画面清爽耐看。",
+    "featured": false,
+    "order": 8
+  },
+  {
+    "image": "images/forest-wedding-03.jpg",
+    "category": "森系外景",
+    "title": "远景牵手与大片绿意",
+    "alt": "森系外景双人牵手婚纱照",
+    "description": "有故事感和空间感，适合作为系列中的开场图。",
+    "featured": true,
+    "order": 9
+  },
+  {
+    "image": "images/forest-wedding-04.jpg",
+    "category": "森系外景",
+    "title": "拥抱托举与夕阳逆光",
+    "alt": "森系外景新郎抱起新娘婚纱照",
+    "description": "氛围更甜、更有动态，适合社交平台分享。",
+    "featured": false,
+    "order": 10
+  },
+  {
+    "image": "images/forest-wedding-05.jpg",
+    "category": "森系外景",
+    "title": "草坪站姿与正式合影",
+    "alt": "森系外景双人站姿婚纱照",
+    "description": "画面简洁端正，适合做请柬或相册主图。",
+    "featured": false,
+    "order": 11
+  },
+  {
+    "image": "images/forest-wedding-06.jpg",
+    "category": "森系外景",
+    "title": "近景拥抱与柔焦光斑",
+    "alt": "森系外景双人拥抱近景婚纱照",
+    "description": "更突出人物情绪，适合做封面或朋友圈首图。",
+    "featured": true,
+    "order": 12
+  }
+]

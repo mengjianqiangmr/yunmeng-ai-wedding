@@ -1,0 +1,120 @@
+backend:
+  name: github
+  repo: mengjianqiangmr/yunmeng-ai-wedding
+  branch: main
+  # GitHub Pages 需要额外部署一个 OAuth 代理服务。
+  # 部署完成后，把下面的地址替换成你的代理域名，例如：
+  # base_url: https://your-decap-oauth-proxy.vercel.app
+  base_url: https://your-decap-oauth-proxy.example.com
+  auth_endpoint: auth
+
+media_folder: images
+public_folder: images
+
+locale: zh_Hans
+publish_mode: simple
+
+collections:
+  - name: cases
+    label: 案例管理
+    label_singular: 案例
+    folder: cases
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.order}}-{{slug}}"
+    sortable_fields:
+      - order
+      - title
+      - category
+    fields:
+      - label: 案例图片
+        name: image
+        widget: image
+      - label: 系列分类
+        name: category
+        widget: select
+        options:
+          - 黑色蝴蝶主题
+          - 森系外景
+      - label: 标题
+        name: title
+        widget: string
+      - label: 图片替代文字
+        name: alt
+        widget: string
+        required: false
+        hint: 用一句话描述图片，方便搜索引擎和无障碍阅读。
+      - label: 说明文字
+        name: description
+        widget: text
+        required: false
+      - label: 是否首页精选
+        name: featured
+        widget: boolean
+        default: false
+      - label: 排序
+        name: order
+        widget: number
+        value_type: int
+        min: 1
+
+  - name: packages
+    label: 套餐管理
+    files:
+      - name: package_data
+        label: 套餐数据
+        file: data/packages.json
+        fields:
+          - label: 套餐列表
+            name: packages
+            widget: list
+            summary: "{{fields.name}} - {{fields.price}}"
+            fields:
+              - label: 标识
+                name: slug
+                widget: string
+                hint: 用英文或拼音，例如 trial、confirm、practical、full。
+              - label: 样式类型
+                name: styleClass
+                widget: select
+                options:
+                  - trial
+                  - confirm
+                  - practical
+                  - full
+              - label: 套餐名称
+                name: name
+                widget: string
+              - label: 价格
+                name: price
+                widget: string
+              - label: 包含照片数
+                name: photoCount
+                widget: string
+              - label: 说明文字
+                name: description
+                widget: text
+              - label: 是否主推标签
+                name: recommended
+                widget: boolean
+                default: false
+              - label: 权益列表
+                name: features
+                widget: list
+                field:
+                  label: 权益
+                  name: feature
+                  widget: string
+              - label: 咨询页套餐参数
+                name: contactPackage
+                widget: string
+                hint: 点击套餐按钮后带到联系表单里的套餐名称。
+              - label: 按钮文字
+                name: buttonText
+                widget: string
+              - label: 排序
+                name: order
+                widget: number
+                value_type: int
+                min: 1
