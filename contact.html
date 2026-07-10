@@ -6,7 +6,7 @@
   <meta name="description" content="联系云梦AI婚纱照，填写 AI 婚纱照定制咨询表。">
   <title>联系我们｜云梦AI婚纱照</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=20260709-system">
+  <link rel="stylesheet" href="css/style.css?v=20260710-phase4">
 </head>
 <body>
   <header class="site-header">
@@ -36,7 +36,7 @@
       <div class="container contact-layout">
         <div class="contact-main">
           <form class="order-form" id="contactForm" action="https://formspree.io/f/xqevoron" method="POST" novalidate>
-            <div class="form-alert" id="formAlert" role="status" hidden></div>
+            <div class="form-alert" id="formAlert" role="alert" aria-live="assertive" hidden></div>
             <div class="form-grid">
               <label>
                 <span>称呼 *</span>
@@ -55,26 +55,23 @@
               </label>
               <label>
                 <span>选择套餐 *</span>
-                <select name="package" id="packageSelect" required>
+                <select name="package" id="packageSelect" data-package-select required>
                   <option value="">请选择套餐</option>
                   <option value="29.9元体验试拍版">29.9元体验试拍版</option>
                   <option value="199元效果确认版">199元效果确认版</option>
                   <option value="599元婚礼实用版">599元婚礼实用版</option>
-                  <option value="999元全流程定制版">999元全流程定制版</option>
+                  <option value="999元婚礼全流程版">999元婚礼全流程版</option>
                   <option value="还不确定，想先咨询">还不确定，想先咨询</option>
                 </select>
                 <small class="error-message"></small>
               </label>
               <label>
                 <span>想要风格 *</span>
-                <select name="style" required>
+                <select name="style" data-style-select required>
                   <option value="">请选择风格</option>
                   <option value="韩系极简棚拍">韩系极简棚拍</option>
                   <option value="森系外景">森系外景</option>
-                  <option value="黑色电影感">黑色电影感</option>
-                  <option value="复古港风">复古港风</option>
-                  <option value="中式 / 新中式">中式 / 新中式</option>
-                  <option value="领证官宣风">领证官宣风</option>
+                  <option value="黑色蝴蝶主题">黑色蝴蝶主题</option>
                   <option value="还不确定，需要推荐">还不确定，需要推荐</option>
                 </select>
                 <small class="error-message"></small>
@@ -103,12 +100,17 @@
               <span>备注需求</span>
               <textarea name="message" rows="6" placeholder="例如：想要白色棚拍、韩系风、双人合照、希望更像本人等"></textarea>
             </label>
+            <label class="privacy-consent">
+              <input type="checkbox" name="privacyConsent" value="已阅读并同意" required>
+              <span>我已阅读并同意<a href="privacy.html" target="_blank" rel="noopener">《隐私与照片说明》</a>，同意将以上信息用于本次咨询与定制沟通。</span>
+              <small class="error-message"></small>
+            </label>
             <button class="btn btn-primary form-submit" type="submit" id="contactSubmit">提交咨询信息</button>
           </form>
 
           <div class="success-panel contact-result" id="successPanel" hidden>
             <div class="summary-card">
-              <div class="result-icon" aria-hidden="true">✓</div>
+              <div class="result-icon" id="resultIcon" aria-hidden="true">✓</div>
               <h2 id="submitTitle">咨询信息已接收</h2>
               <p id="submitStatus">你的 AI 婚纱照定制需求已成功提交，系统已同步发送到客服邮箱。我们会尽快通过你填写的微信号或手机号与你联系。</p>
               <p class="submit-note" id="submitNote">为了更快确认制作方案，你也可以主动添加客服微信，发送人物照片和参考风格图。</p>
@@ -119,15 +121,18 @@
               </details>
               <div class="copy-actions">
                 <button class="btn btn-primary" type="button" id="copyWechatBtn">复制客服微信</button>
+                <button class="btn btn-ghost" type="button" id="retryContactBtn" hidden>返回表单重试</button>
               </div>
             </div>
             <div class="wechat-card">
               <div>
                 <h2>添加客服微信</h2>
-                <p class="wechat-id">客服微信：<strong id="serviceWechat">YOUR_WECHAT_ID</strong></p>
+                <p class="wechat-id">客服微信：<strong id="serviceWechat">mengjianqiang0918</strong></p>
                 <p>复制微信号后，请添加客服微信。后续请根据客服提示发送人物照片和参考风格图。</p>
               </div>
-              <div class="qr-placeholder">微信二维码占位图</div>
+              <div class="qr-placeholder">
+                <img src="images/wechat-qr.jpg" alt="客服微信 mengjianqiang0918 二维码" width="888" height="1134" loading="lazy" decoding="async">
+              </div>
             </div>
           </div>
         </div>
@@ -141,7 +146,7 @@
             <li>想要发布的平台或用途</li>
             <li>预算和期望交付时间</li>
           </ul>
-          <p>提交后会同步到客服邮箱，正式制作前会再次确认套餐、照片要求和交付时间；如果比较着急，也可以直接复制客服微信主动添加沟通。</p>
+          <p>提交后会同步到客服邮箱，正式制作前会再次确认套餐、照片要求和交付时间。人物照片仅用于本次定制，确认交付 30 天后删除。</p>
         </aside>
       </div>
 
@@ -151,10 +156,14 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <a class="brand" href="index.html"><span class="seal">囍</span><span>云梦AI婚纱照</span></a>
-      <p>专注 AI 婚纱照、情侣写真、领证照定制。© 2026 云梦AI婚纱照 All Rights Reserved.</p>
+      <div class="footer-meta">
+        <p>专注 AI 婚纱照、情侣写真、领证照定制。© 2026 云梦AI婚纱照 All Rights Reserved.</p>
+        <a href="privacy.html">隐私与照片说明</a>
+      </div>
     </div>
   </footer>
 
-  <script src="js/main.js?v=20260709-ajax1"></script>
+  <script src="js/cases.js?v=20260710-cms4"></script>
+  <script src="js/main.js?v=20260710-contact2"></script>
 </body>
 </html>

@@ -13,6 +13,40 @@ locale: zh_Hans
 publish_mode: simple
 
 collections:
+  - name: themes
+    label: 主题管理
+    label_singular: 主题
+    folder: themes
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.order}}-{{fields.slug}}"
+    summary: "{{fields.order}} · {{fields.name}}"
+    sortable_fields:
+      - order
+      - name
+    fields:
+      - label: 主题名称
+        name: name
+        widget: string
+      - label: 英文标识
+        name: slug
+        widget: string
+        hint: 使用英文或拼音且不要有空格，例如 korean-minimal。
+      - label: 主题说明
+        name: description
+        widget: text
+        required: false
+      - label: 前端顺序
+        name: order
+        widget: number
+        value_type: int
+        min: 1
+      - label: 是否显示
+        name: enabled
+        widget: boolean
+        default: true
+
   - name: cases
     label: 案例管理
     label_singular: 案例
@@ -31,8 +65,14 @@ collections:
         widget: image
       - label: 系列分类
         name: category
-        widget: string
-        hint: 可填写任意主题名称，例如：黑色蝴蝶主题、森系外景、韩系极简棚拍、复古电影感。
+        widget: relation
+        collection: themes
+        search_fields:
+          - name
+        value_field: name
+        display_fields:
+          - name
+        hint: 新主题请先在“主题管理”中新建，再回到案例中选择。
       - label: 标题
         name: title
         widget: string
@@ -105,7 +145,7 @@ collections:
               - label: 咨询页套餐参数
                 name: contactPackage
                 widget: string
-                hint: 点击套餐按钮后带到联系表单里的套餐名称。
+                hint: 点击套餐按钮后带到联系表单里的完整名称，例如“599元婚礼实用版”。
               - label: 按钮文字
                 name: buttonText
                 widget: string

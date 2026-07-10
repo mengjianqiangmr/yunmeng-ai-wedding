@@ -1,0 +1,25 @@
+{
+  "categories": [
+    {
+      "name": "韩系极简棚拍",
+      "slug": "korean-minimal",
+      "description": "干净背景、柔和光线与克制构图，突出人物状态和婚纱质感。",
+      "order": 1,
+      "enabled": true
+    },
+    {
+      "name": "黑色蝴蝶主题",
+      "slug": "black-butterfly",
+      "description": "暗调棚拍结合银白婚纱与蝴蝶细节，画面更具电影感和仪式感。",
+      "order": 2,
+      "enabled": true
+    },
+    {
+      "name": "森系外景",
+      "slug": "forest",
+      "description": "自然光、草地与森林氛围，适合偏爱温柔、松弛和故事感的新人。",
+      "order": 3,
+      "enabled": true
+    }
+  ]
+}

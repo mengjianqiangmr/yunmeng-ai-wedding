@@ -1,7 +1,7 @@
 {
   "packages": [
     {
-      "contactPackage": "体验试拍版",
+      "contactPackage": "29.9元体验试拍版",
       "styleClass": "trial",
       "price": "¥29.9",
       "name": "体验试拍版",
@@ -20,7 +20,7 @@
       "buttonText": "选择体验试拍版"
     },
     {
-      "contactPackage": "效果确认版",
+      "contactPackage": "199元效果确认版",
       "styleClass": "confirm",
       "price": "¥199",
       "name": "效果确认版",
@@ -39,7 +39,7 @@
       "buttonText": "选择效果确认版"
     },
     {
-      "contactPackage": "婚礼实用版",
+      "contactPackage": "599元婚礼实用版",
       "styleClass": "practical",
       "price": "¥599",
       "name": "婚礼实用版",
@@ -59,7 +59,7 @@
       "buttonText": "选择婚礼实用版"
     },
     {
-      "contactPackage": "婚礼全流程版",
+      "contactPackage": "999元婚礼全流程版",
       "styleClass": "full",
       "price": "¥999",
       "name": "婚礼全流程版",
