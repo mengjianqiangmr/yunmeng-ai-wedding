@@ -223,5 +223,20 @@
     "thumbHeight": 900,
     "imageWidth": 1086,
     "imageHeight": 1448
+  },
+  {
+    "image": "images/0014bf88dd9d2963e9dc55edc73374c3.jpg",
+    "category": "复古电影感",
+    "title": "复古电影感双人",
+    "featured": false,
+    "order": 1,
+    "alt": "复古电影感双人",
+    "description": "",
+    "imageThumb": "images/optimized/case-5d01d3beac07-card.webp",
+    "imageOptimized": "images/optimized/case-5d01d3beac07-full.webp",
+    "thumbWidth": 720,
+    "thumbHeight": 900,
+    "imageWidth": 1080,
+    "imageHeight": 1350
   }
 ]
